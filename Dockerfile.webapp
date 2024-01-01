@@ -5,12 +5,8 @@ WORKDIR /web-app
 COPY requirements.txt ./
 RUN pip install --no-cache-dir -r requirements.txt
 
-COPY  . .
+COPY . .
 
-RUN pip install pipenv
+EXPOSE 5000
 
-RUN pipenv install
-
-EXPOSE 5001
-
-CMD [ "pipenv", "run", "python", "app.py"]
+CMD ["python", "app.py"]

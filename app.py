@@ -8,11 +8,6 @@ app.secret_key = 'your_secret_key'  # Set a secret key for message flashing
 
 app.config["MONGO_URI"] = "mongodb+srv://breadlover:bard@cluster0.lieum6u.mongodb.net/?retryWrites=true&w=majority"
 mongo = PyMongo(app)
-#connection = app.config["MONGO_CONN"]
-#db = connection["blog"]
-#blogs = db.blogs
-#users = db.users
-
 
 @app.route('/')
 def index():
@@ -21,12 +16,11 @@ def index():
 @app.route('/register', methods=['GET', 'POST'])
 def register():
     if request.method == 'POST':
-        users = mongo.db.users
-        existing_user = users.find_one({'email': request.form['email']})
+        existing_user = mongo.db.users.find_one({'email': request.form['email']})
 
         if existing_user is None:
             hashpass = generate_password_hash(request.form['password'])
-            users.insert_one({'email': request.form['email'], 'password': hashpass})
+            mongo.db.users.insert_one({'email': request.form['email'], 'password': hashpass})
             flash('Account created successfully!', 'success')
             return redirect(url_for('index'))
         else:
@@ -37,11 +31,11 @@ def register():
 @app.route('/login', methods=['GET', 'POST'])
 def login():
     if request.method == 'POST':
-        users = mongo.db.users
-        login_user = users.find_one({'email': request.form['email']})
+        login_user = mongo.db.users.find_one({'email': request.form['email']})
 
         if login_user:
             if check_password_hash(login_user['password'], request.form['password']):
+                # If needed, set up the user session here
                 flash('Logged in successfully!', 'success')
                 return redirect(url_for('index'))
             else:
@@ -52,5 +46,5 @@ def login():
     return render_template('login.html')
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(host='0.0.0.0', port=5000, debug=True)
 

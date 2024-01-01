@@ -74,16 +74,30 @@
         <div class="popup-content">
             <span class="close-btn" onclick="closePopup()">&times;</span>
             <h2>Login/Create Account</h2>
-            <form id="loginForm">
-                <label for="email">Email Address:</label>
-                <input type="email" id="email" name="email" required>
+            
+            <!-- Login Form -->
+            <form id="loginForm" action="/login" method="post">
+                <label for="login-email">Email Address:</label>
+                <input type="email" id="login-email" name="email" required>
 
-                <label for="password">Password:</label>
-                <input type="password" id="password" name="password" required>
+                <label for="login-password">Password:</label>
+                <input type="password" id="login-password" name="password" required>
 
                 <button type="submit">Login</button>
-                <button type="button" onclick="switchToCreateAccount()">Create Account</button>
             </form>
+
+            <!-- Create Account Form -->
+            <form id="createAccountForm" action="/register" method="post" style="display:none;">
+                <label for="register-email">Email Address:</label>
+                <input type="email" id="register-email" name="email" required>
+
+                <label for="register-password">Password:</label>
+                <input type="password" id="register-password" name="password" required>
+
+                <button type="submit">Create Account</button>
+            </form>
+
+            <button type="button" onclick="switchForms()">Switch to Create Account</button>
         </div>
     </div>
 
