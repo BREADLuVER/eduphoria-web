@@ -1,0 +1,32 @@
+version: "3.10"
+
+services:
+  app:
+    image: bailongzhao/github_blog:web-app
+    environment:
+      TOKEN: ${TOKEN}
+    build:
+      context: .
+      dockerfile: Dockerfile.webapp
+    ports:
+      - "5001:5001"
+    depends_on:
+      - mongodb
+    networks:
+      - mongonetwork
+  mongodb:
+    image: bailongzhao/github_blog:mongo
+    build:
+      context: .
+      dockerfile: Dockerfile.mongo
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongodata:/data/db
+    networks:
+      - mongonetwork
+volumes:
+  mongodata:
+networks:
+  mongonetwork:
+
