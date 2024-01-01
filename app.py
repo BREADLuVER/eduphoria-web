@@ -1,50 +1,62 @@
 from flask import Flask, render_template, request, redirect, url_for, flash
-from flask_pymongo import PyMongo
 from pymongo import MongoClient
 from werkzeug.security import generate_password_hash, check_password_hash
+import os
+import mongomock
 
 app = Flask(__name__)
 app.secret_key = 'your_secret_key'  # Set a secret key for message flashing
 
-app.config["MONGO_URI"] = "mongodb+srv://breadlover:bard@cluster0.lieum6u.mongodb.net/?retryWrites=true&w=majority"
-mongo = PyMongo(app)
+# MongoDB setup
+if os.getenv("TESTING"):
+    app.config["MONGO_CONN"] = mongomock.MongoClient()
+else:
+    URI = "mongodb://mongodb:27017/"
+    app.config["MONGO_CONN"] = MongoClient(URI)
 
-@app.route('/')
+connection = app.config["MONGO_CONN"]
+db = connection["edu-web"]
+users = db.user
+
+@app.route('/', methods=['GET', 'POST'])
 def index():
+    if request.method == 'POST':
+        if 'login' in request.form:
+            return login()
+        elif 'register' in request.form:
+            return register()
     return render_template('index.html')
 
-@app.route('/register', methods=['GET', 'POST'])
-def register():
-    if request.method == 'POST':
-        existing_user = mongo.db.users.find_one({'email': request.form['email']})
-
-        if existing_user is None:
-            hashpass = generate_password_hash(request.form['password'])
-            mongo.db.users.insert_one({'email': request.form['email'], 'password': hashpass})
-            flash('Account created successfully!', 'success')
-            return redirect(url_for('index'))
-        else:
-            flash('Email already registered.', 'error')
-
-    return render_template('register.html')
-
-@app.route('/login', methods=['GET', 'POST'])
 def login():
-    if request.method == 'POST':
-        login_user = mongo.db.users.find_one({'email': request.form['email']})
+    username = request.form['username']
+    password = request.form['password']
+    user = users.find_one({'username': username})
 
-        if login_user:
-            if check_password_hash(login_user['password'], request.form['password']):
-                # If needed, set up the user session here
-                flash('Logged in successfully!', 'success')
-                return redirect(url_for('index'))
-            else:
-                flash('Invalid password.', 'error')
-        else:
-            flash('Email not registered.', 'error')
+    if user and check_password_hash(user['password'], password):
+        flash('Logged in successfully!', 'success')
+    else:
+        flash('Invalid username or password', 'error')
+    return redirect(url_for('index'))  # Redirect back to index after login attempt
 
-    return render_template('login.html')
+def register():
+    username = request.form['username']
+    password = generate_password_hash(request.form['password'])
+
+    if users.find_one({'username': username}):
+        flash('Username already exists', 'error')
+    else:
+        users.insert_one({'username': username, 'password': password})
+        flash('Account created successfully!', 'success')
+    return redirect(url_for('index'))  # Redirect back to index after registration attempt
+
+@app.before_first_request
+def init_db():
+    print("MongoDB URI:", connection)
+    print("MongoDB name:", db.name)
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5000, debug=True)
+
+
+
 
