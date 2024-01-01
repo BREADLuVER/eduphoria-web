@@ -6,15 +6,23 @@
     <title>Your Tutor/School Website</title>
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="css/index-css.css" />
+    <link rel="stylesheet" type="text/css" href="js/index-js.js" />
     <style>
         /* Custom styles */
         .navbar-custom {
-            background-color: rgb(249, 249, 248); /* Your chosen color */
+            background-color: rgba(0, 0, 0, 0); /* Make navbar background transparent */
+            z-index: 10;
         }
         .hero-section {
-            background: url("https://github.com/BREADLuVER/eduphoria-web/blob/main/images/gptwarhammer.jpg") center center no-repeat;
+            background: url("https://raw.githubusercontent.com/BREADLuVER/eduphoria-web/main/images/grad.jpg") center center no-repeat;
             background-size: cover;
             color: white;
+            height: 90vh; /* Responsive height based on the viewport height */
+            margin-top: -30px;
+        }
+        .navbar-brand, .nav-link {
+            color: white !important; /* Ensures the navbar text is visible */
         }
         .section-title {
             color: #333; /* Dark color for contrast */
@@ -22,7 +30,7 @@
     </style>
 </head>
 <body>
-    <nav class="navbar navbar-expand-lg navbar-light navbar-custom sticky-top">
+    <nav class="navbar navbar-expand-lg navbar-light navbar-custom fixed-top">
         <a class="navbar-brand" href="#">Your Brand</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
                 aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -43,22 +51,41 @@
                     <a class="nav-link" href="#contact">Contact Us</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#login">Login</a>
+                    <a class="nav-link" href="#login" onclick="openPopup(); return false;">Login</a>
                 </li>
             </ul>
         </div>
-    </nav>
+    </nav>    
     <header class="hero-section py-5">
         <div class="container h-100">
             <div class="row h-100 align-items-center">
                 <div class="col-12 text-center">
-                    <h1>Welcome to Your Tutor/School</h1>
+                    <h1>EDUPHORIA</h1>
                     <p class="lead">A bright future awaits.</p>
                     <a href="#about" class="btn btn-light btn-lg">Learn More</a>
                 </div>
             </div>
         </div>
     </header>
+
+    <!-- Login/Create Account Popup -->
+    <div id="loginPopup" class="popup">
+        <div class="popup-content">
+            <span class="close-btn" onclick="closePopup()">&times;</span>
+            <h2>Login/Create Account</h2>
+            <form id="loginForm">
+                <label for="email">Email Address:</label>
+                <input type="email" id="email" name="email" required>
+
+                <label for="password">Password:</label>
+                <input type="password" id="password" name="password" required>
+
+                <button type="submit">Login</button>
+                <button type="button" onclick="switchToCreateAccount()">Create Account</button>
+            </form>
+        </div>
+    </div>
+
     <section id="about" class="py-5">
         <div class="container">
             <h2 class="section-title">About Us</h2>
@@ -75,5 +102,22 @@
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script>
+        function openPopup() {
+            document.getElementById("loginPopup").style.display = "block";
+        }
+
+        function closePopup() {
+            document.getElementById("loginPopup").style.display = "none";
+        }
+
+        function switchToCreateAccount() {
+            // Additional logic for switching to a create account form can be added here
+            alert("Create account functionality not implemented yet.");
+        }
+
+        // Example usage: Attach openPopup() to the button click event
+        document.getElementById("yourLoginButtonId").onclick = openPopup;
+    </script>
 </body>
 </html>
