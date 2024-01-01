@@ -1,13 +1,18 @@
 from flask import Flask, render_template, request, redirect, url_for, flash
 from flask_pymongo import PyMongo
+from pymongo import MongoClient
 from werkzeug.security import generate_password_hash, check_password_hash
 
 app = Flask(__name__)
 app.secret_key = 'your_secret_key'  # Set a secret key for message flashing
 
-# MongoDB configuration
-app.config["MONGO_URI"] = "your_mongodb_uri"
+app.config["MONGO_URI"] = "mongodb+srv://breadlover:bard@cluster0.lieum6u.mongodb.net/?retryWrites=true&w=majority"
 mongo = PyMongo(app)
+#connection = app.config["MONGO_CONN"]
+#db = connection["blog"]
+#blogs = db.blogs
+#users = db.users
+
 
 @app.route('/')
 def index():
