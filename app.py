@@ -1,6 +1,7 @@
 from flask import Flask, render_template, request, redirect, url_for, flash
 from pymongo import MongoClient
 from werkzeug.security import generate_password_hash, check_password_hash
+from pymongo.errors import PyMongoError
 import os
 import mongomock
 
@@ -46,8 +47,12 @@ def register():
     if users.find_one({'email': email}):
         flash('Email already exists', 'error')
     else:
-        users.insert_one({'email': email, 'password': password})
-        flash('Account created successfully!', 'success')
+        try:
+            users.insert_one({'email': email, 'password': password})
+            flash('Account created successfully!', 'success')
+        except PyMongoError as e:
+            print("Error inserting into MongoDB:", e)
+            flash('An error occurred. Please try again.', 'error')
     return redirect(url_for('index'))
 
 @app.before_first_request
