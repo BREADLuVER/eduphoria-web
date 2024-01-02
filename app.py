@@ -16,10 +16,11 @@ else:
 
 connection = app.config["MONGO_CONN"]
 db = connection["edu-web"]
-users = db.user
+users = db.users
 
 @app.route('/', methods=['GET', 'POST'])
 def index():
+    print("Received request for index route")
     if request.method == 'POST':
         if 'login' in request.form:
             return login()
@@ -27,7 +28,9 @@ def index():
             return register()
     return render_template('index.html')
 
+@app.route("/login", methods=["POST"])
 def login():
+    print("Processing login")
     username = request.form['username']
     password = request.form['password']
     user = users.find_one({'username': username})
@@ -38,7 +41,9 @@ def login():
         flash('Invalid username or password', 'error')
     return redirect(url_for('index'))  # Redirect back to index after login attempt
 
+@app.route("/register", methods=["POST"])
 def register():
+    print("Processing registration")
     username = request.form['username']
     password = generate_password_hash(request.form['password'])
 
@@ -51,11 +56,13 @@ def register():
 
 @app.before_first_request
 def init_db():
+    print("Initializing database")
     print("MongoDB URI:", connection)
     print("MongoDB name:", db.name)
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5000, debug=True)
+
 
 
 

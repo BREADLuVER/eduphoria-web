@@ -78,7 +78,7 @@
             <form id="loginForm" action="/login" method="post" style="display: block;">
                 <h2>Login</h2>
                 <label for="login-email">Email Address:</label>
-                <input type="email" id="login-email" name="email" required>
+                <input type="email" id="login-email" name="username" required>  <!-- Changed name to 'username' -->
 
                 <label for="login-password">Password:</label>
                 <input type="password" id="login-password" name="password" required>
@@ -91,7 +91,7 @@
             <form id="createAccountForm" action="/register" method="post" style="display: none;">
                 <h2>Create Account</h2>
                 <label for="register-email">Email Address:</label>
-                <input type="email" id="register-email" name="email" required>
+                <input type="email" id="register-email" name="username" required>  <!-- Changed name to 'username' -->
 
                 <label for="register-password">Password:</label>
                 <input type="password" id="register-password" name="password" required>
