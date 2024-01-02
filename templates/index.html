@@ -4,33 +4,39 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Your Tutor/School Website</title>
-    <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="/static/css/index-css.css" />
     <script src="/static/js/index-js.js"></script>
     <style>
-        /* Custom styles */
         .navbar-custom {
-            background-color: rgba(0, 0, 0, 0); /* Make navbar background transparent */
+            background-color: rgba(0, 0, 0, 0); 
             z-index: 10;
         }
         .hero-section {
             background: url("https://raw.githubusercontent.com/BREADLuVER/eduphoria-web/main/images/grad.jpg") center center no-repeat;
             background-size: cover;
             color: white;
-            height: 90vh; /* Responsive height based on the viewport height */
+            height: 90vh; 
             margin-top: -30px;
         }
         .navbar-brand, .nav-link {
-            color: white !important; /* Ensures the navbar text is visible */
+            color: white !important;
         }
         .section-title {
-            color: #333; /* Dark color for contrast */
+            color: #333; 
         }
     </style>
 </head>
 <body>
-
+    <div class="flash-messages">
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                {% for category, message in messages %}
+                    <div class="alert alert-{{ category }}">{{ message }}</div>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+    </div>
     <nav class="navbar navbar-expand-lg navbar-light navbar-custom fixed-top">
         <a class="navbar-brand" href="#">Your Brand</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
@@ -78,7 +84,7 @@
             <form id="loginForm" action="/login" method="post" style="display: block;">
                 <h2>Login</h2>
                 <label for="login-email">Email Address:</label>
-                <input type="email" id="login-email" name="username" required>  <!-- Changed name to 'username' -->
+                <input type="email" id="login-email" name="username" required>  
 
                 <label for="login-password">Password:</label>
                 <input type="password" id="login-password" name="password" required>
@@ -91,7 +97,7 @@
             <form id="createAccountForm" action="/register" method="post" style="display: none;">
                 <h2>Create Account</h2>
                 <label for="register-email">Email Address:</label>
-                <input type="email" id="register-email" name="username" required>  <!-- Changed name to 'username' -->
+                <input type="email" id="register-email" name="username" required> 
 
                 <label for="register-password">Password:</label>
                 <input type="password" id="register-password" name="password" required>
@@ -109,12 +115,10 @@
         </div>
     </section>
 
-    <!-- More sections would go here -->
     <footer class="text-center py-4">
         <p>&copy; 2024 Your Tutor/School Website</p>
     </footer>
 
-    <!-- Bootstrap JS, Popper.js, and jQuery -->
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
@@ -137,8 +141,6 @@
             document.getElementById("createAccountForm").style.display = "none";
         }
     
-        // Example usage: Attach openPopup() to the button click event
-        // Make sure your login button has the id 'loginButton'
         var loginButton = document.getElementById("loginButton");
         if (loginButton) {
             loginButton.onclick = openPopup;

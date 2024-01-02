@@ -7,6 +7,5 @@ function closePopup() {
 }
 
 function switchToCreateAccount() {
-    // Additional logic for switching to a create account form can be added here
     alert("Create account functionality not implemented yet.");
 }

@@ -5,9 +5,8 @@ import os
 import mongomock
 
 app = Flask(__name__)
-app.secret_key = 'your_secret_key'  # Set a secret key for message flashing
+app.secret_key = 'your_secret_key' 
 
-# MongoDB setup
 if os.getenv("TESTING"):
     app.config["MONGO_CONN"] = mongomock.MongoClient()
 else:
@@ -39,7 +38,7 @@ def login():
         flash('Logged in successfully!', 'success')
     else:
         flash('Invalid username or password', 'error')
-    return redirect(url_for('index'))  # Redirect back to index after login attempt
+    return redirect(url_for('index')) 
 
 @app.route("/register", methods=["POST"])
 def register():
@@ -52,7 +51,7 @@ def register():
     else:
         users.insert_one({'username': username, 'password': password})
         flash('Account created successfully!', 'success')
-    return redirect(url_for('index'))  # Redirect back to index after registration attempt
+    return redirect(url_for('index')) 
 
 @app.before_first_request
 def init_db():
