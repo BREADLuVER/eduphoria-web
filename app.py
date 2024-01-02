@@ -8,12 +8,14 @@ import mongomock
 app = Flask(__name__)
 app.secret_key = 'your_secret_key' 
 
-if os.getenv("TESTING"):
-    app.config["MONGO_CONN"] = mongomock.MongoClient()
-else:
-    URI = "mongodb://mongodb:27017/"
-    app.config["MONGO_CONN"] = MongoClient(URI)
+# if os.getenv("TESTING") == True:
+#     app.config["MONGO_CONN"] = mongomock.MongoClient()
+# else:
+#     URI = "mongodb://mongodb:27017/"
+#     app.config["MONGO_CONN"] = MongoClient(URI)
 
+URI = os.getenv('MONGO_URI', 'default-mongodb-uri')
+app.config["MONGO_CONN"] = MongoClient(URI)
 connection = app.config["MONGO_CONN"]
 db = connection["edu-web"]
 users = db.users
@@ -54,12 +56,6 @@ def register():
             print("Error inserting into MongoDB:", e)
             flash('An error occurred. Please try again.', 'error')
     return redirect(url_for('index'))
-
-@app.before_first_request
-def init_db():
-    print("Initializing database")
-    print("MongoDB URI:", connection)
-    print("MongoDB name:", db.name)
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5000, debug=True)

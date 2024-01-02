@@ -3,7 +3,7 @@ version: "3.10"
 services:
   app:
     environment:
-      - TESTING=false
+      - TESTING = False
     image: bradyin/edu-web:web
     build:
       context: .
