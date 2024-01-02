@@ -19,7 +19,6 @@ users = db.users
 
 @app.route('/', methods=['GET', 'POST'])
 def index():
-    print("Received request for index route")
     if request.method == 'POST':
         if 'login' in request.form:
             return login()
@@ -29,29 +28,27 @@ def index():
 
 @app.route("/login", methods=["POST"])
 def login():
-    print("Processing login")
-    username = request.form['username']
+    email = request.form['email']
     password = request.form['password']
-    user = users.find_one({'username': username})
+    user = users.find_one({'email': email})
 
     if user and check_password_hash(user['password'], password):
         flash('Logged in successfully!', 'success')
     else:
-        flash('Invalid username or password', 'error')
-    return redirect(url_for('index')) 
+        flash('Invalid email or password', 'error')
+    return redirect(url_for('index'))
 
 @app.route("/register", methods=["POST"])
 def register():
-    print("Processing registration")
-    username = request.form['username']
+    email = request.form['email']
     password = generate_password_hash(request.form['password'])
 
-    if users.find_one({'username': username}):
-        flash('Username already exists', 'error')
+    if users.find_one({'email': email}):
+        flash('Email already exists', 'error')
     else:
-        users.insert_one({'username': username, 'password': password})
+        users.insert_one({'email': email, 'password': password})
         flash('Account created successfully!', 'success')
-    return redirect(url_for('index')) 
+    return redirect(url_for('index'))
 
 @app.before_first_request
 def init_db():
