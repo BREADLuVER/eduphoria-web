@@ -71,6 +71,29 @@
                 {% endif %}
             </ul>
         </div>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ml-auto">
+                <!-- ... other nav items ... -->
+    
+                {% if session.logged_in %}
+                    <!-- Dropdown for User -->
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <i class="fas fa-user"></i>
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" href="#settings">Settings</a>
+                            <a class="dropdown-item" href="{{ url_for('logout') }}">Logout</a>
+                        </div>
+                    </li>
+                {% else %}
+                    <!-- Login Button -->
+                    <li class="nav-item">
+                        <a href="#login" id="loginButton" class="nav-link" onclick="openPopup(); return false;">Login</a>
+                    </li>
+                {% endif %}
+            </ul>
+        </div>
     </nav>
     
     <header class="hero-section py-5">
