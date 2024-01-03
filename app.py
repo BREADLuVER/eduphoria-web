@@ -3,6 +3,7 @@ from pymongo import MongoClient
 from werkzeug.security import generate_password_hash, check_password_hash
 from pymongo.errors import PyMongoError
 import os
+from flask import session
 import mongomock
 
 app = Flask(__name__)
@@ -37,6 +38,7 @@ def login():
 
     if user and check_password_hash(user['password'], password):
         flash('Logged in successfully!', 'success')
+        session['logged_in'] = True  # Set session variable
     else:
         flash('Invalid email or password', 'error')
     return redirect(url_for('index'))
@@ -56,6 +58,12 @@ def register():
             print("Error inserting into MongoDB:", e)
             flash('An error occurred. Please try again.', 'error')
     return redirect(url_for('index'))
+
+@app.route('/logout')
+def logout():
+    session.pop('logged_in', None)  # Remove 'logged_in' from session
+    return redirect(url_for('index'))
+
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5000, debug=True)
