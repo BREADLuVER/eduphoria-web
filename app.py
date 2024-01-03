@@ -2,12 +2,21 @@ from flask import Flask, render_template, request, redirect, url_for, flash
 from pymongo import MongoClient
 from werkzeug.security import generate_password_hash, check_password_hash
 from pymongo.errors import PyMongoError
-from flask_mail import Message
+from flask_mail import Message, Mail
 import os
 from flask import session
 
 app = Flask(__name__)
-app.secret_key = 'your_secret_key' 
+app.secret_key = '246810' 
+app.config['MAIL_SERVER'] = 'smtp.mailtrap.io'
+app.config['MAIL_PORT'] = 2525
+app.config['MAIL_USERNAME'] = 'your-mailtrap-username'
+app.config['MAIL_PASSWORD'] = 'your-mailtrap-password'
+app.config['MAIL_USE_TLS'] = True
+app.config['MAIL_USE_SSL'] = False
+
+# Initialize Flask-Mail
+mail = Mail(app)
 
 # if os.getenv("TESTING") == True:
 #     app.config["MONGO_CONN"] = mongomock.MongoClient()
