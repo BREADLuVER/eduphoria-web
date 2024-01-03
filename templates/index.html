@@ -6,6 +6,7 @@
     <title>Your Tutor/School Website</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="/static/css/index-css.css" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" rel="stylesheet">
     <script src="/static/js/index-js.js"></script>
     <style>
         .navbar-custom {
@@ -57,19 +58,21 @@
                 <li class="nav-item">
                     <a class="nav-link" href="#contact">Contact Us</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#login" onclick="openPopup(); return false;">Login</a>
-                </li>
+                {% if session.logged_in %}
+                    <!-- User Icon inside list item -->
+                    <li class="nav-item">
+                        <a href="#" id="userIcon" class="nav-link"><i class="fas fa-user"></i></a>
+                    </li>
+                {% else %}
+                    <!-- Login Button inside list item -->
+                    <li class="nav-item">
+                        <a href="#login" id="loginButton" class="nav-link" onclick="openPopup(); return false;">Login</a>
+                    </li>
+                {% endif %}
             </ul>
         </div>
-        {% if session.logged_in %}
-            <!-- User Icon -->
-            <a href="#" id="userIcon"><i class="fas fa-user"></i></a>
-        {% else %}
-            <!-- Login Button -->
-            <button id="loginButton" onclick="openPopup();">Login</button>
-        {% endif %}
-    </nav>    
+    </nav>
+    
     <header class="hero-section py-5">
         <div class="container h-100">
             <div class="row h-100 align-items-center">
