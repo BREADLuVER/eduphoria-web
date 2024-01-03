@@ -9,6 +9,8 @@ from flask import session
 
 app = Flask(__name__)
 app.secret_key = '246810' 
+app.config['SECURITY_PASSWORD_SALT'] = os.getenv('SECURITY_PASSWORD_SALT')
+
 app.config['MAIL_SERVER'] = 'live.smtp.mailtrap.io'
 app.config['MAIL_PORT'] = 587
 
@@ -84,13 +86,6 @@ def send_password_reset_email(email_to, reset_token):
 def generate_reset_token(email):
     serializer = URLSafeTimedSerializer(app.config['SECRET_KEY'])
     return serializer.dumps(email, salt=app.config['SECURITY_PASSWORD_SALT'])
-
-# For sending the email
-def send_password_reset_email(user_email):
-    token = generate_reset_token(user_email)
-    reset_url = url_for('reset_with_token', token=token, _external=True)
-    # Use your email library to send the email with the reset_url
-
 
 @app.route('/forgot', methods=['POST'])
 def forgot_password():
