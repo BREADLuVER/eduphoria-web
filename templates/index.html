@@ -59,35 +59,18 @@
                     <a class="nav-link" href="#contact">Contact Us</a>
                 </li>
                 {% if session.logged_in %}
-                    <!-- User Icon inside list item -->
-                    <li class="nav-item">
-                        <a href="#" id="userIcon" class="nav-link"><i class="fas fa-user"></i></a>
-                    </li>
-                {% else %}
-                    <!-- Login Button inside list item -->
-                    <li class="nav-item">
-                        <a href="#login" id="loginButton" class="nav-link" onclick="openPopup(); return false;">Login</a>
-                    </li>
-                {% endif %}
-            </ul>
-        </div>
-        <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav ml-auto">
-                <!-- ... other nav items ... -->
-    
-                {% if session.logged_in %}
-                    <!-- Dropdown for User -->
+                    <!-- User Dropdown Menu -->
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             <i class="fas fa-user"></i>
                         </a>
-                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" href="#settings">Settings</a>
-                            <a class="dropdown-item" href="{{ url_for('logout') }}">Logout</a>
+                        <div class="dropdown-menu" aria-labelledby="userDropdown">
+                            <a class="dropdown-item" href="#userSettings">User Settings</a>
+                            <a class="dropdown-item" href="#logout">Logout</a>
                         </div>
                     </li>
                 {% else %}
-                    <!-- Login Button -->
+                    <!-- Login Button inside list item -->
                     <li class="nav-item">
                         <a href="#login" id="loginButton" class="nav-link" onclick="openPopup(); return false;">Login</a>
                     </li>
