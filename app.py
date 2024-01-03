@@ -69,12 +69,12 @@ def register():
 
 @app.route('/logout')
 def logout():
-    session.pop('logged_in', None)  # Remove 'logged_in' from session
+    session.pop('logged_in', None) 
     return redirect(url_for('index'))
 
 def send_password_reset_email(email_to, reset_token):
     msg = Message("Password Reset Request",
-                  sender="noreply@example.com",  # Sender email
+                  sender=os.getenv('SUPPORT_EMAIL'),  # Sender email
                   recipients=[email_to])
     msg.body = f"""To reset your password, visit the following link:
     {url_for('reset_token', token=reset_token, _external=True)}
@@ -90,14 +90,13 @@ def generate_reset_token(email):
 @app.route('/forgot', methods=['POST'])
 def forgot_password():
     email = request.form.get('email')
-    user = users.find_one({'email': email})  # Assuming 'users' is your MongoDB collection
+    user = users.find_one({'email': email})
     if user:
         reset_token = generate_reset_token(email)
         send_password_reset_email(email, reset_token)
         flash('An email has been sent with instructions to reset your password.', 'info')
     else:
         flash('No account found with that email address.', 'error')
-    # Redirect back to the same page so the user can see the flash message
     return redirect(url_for('index'))
 
 @app.route('/reset/<token>', methods=['GET', 'POST'])
@@ -106,14 +105,12 @@ def reset_token(token):
         serializer = URLSafeTimedSerializer(app.config['SECRET_KEY'])
         email = serializer.loads(token, salt=app.config['SECURITY_PASSWORD_SALT'], max_age=3600)
     except SignatureExpired:
-        # The token is expired
         flash('The password reset link is expired.', 'danger')
         return redirect(url_for('forgot_password'))
 
     if request.method == 'POST':
         password = request.form['password']
         hashed_password = generate_password_hash(password)
-        # Assuming users is your MongoDB collection for user accounts
         users.update_one({'email': email}, {'$set': {'password': hashed_password}})
         flash('Your password has been updated!', 'success')
         return redirect(url_for('login'))
