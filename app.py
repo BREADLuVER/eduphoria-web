@@ -1,6 +1,7 @@
 from flask import Flask, render_template, request, redirect, url_for, flash
 from pymongo import MongoClient
 from werkzeug.security import generate_password_hash, check_password_hash
+from itsdangerous import URLSafeTimedSerializer, SignatureExpired
 from pymongo.errors import PyMongoError
 from flask_mail import Message, Mail
 import os
@@ -8,21 +9,17 @@ from flask import session
 
 app = Flask(__name__)
 app.secret_key = '246810' 
-app.config['MAIL_SERVER'] = 'smtp.mailtrap.io'
-app.config['MAIL_PORT'] = 2525
-app.config['MAIL_USERNAME'] = 'your-mailtrap-username'
-app.config['MAIL_PASSWORD'] = 'your-mailtrap-password'
+app.config['MAIL_SERVER'] = 'live.smtp.mailtrap.io'
+app.config['MAIL_PORT'] = 587
+
+MAIL_UN = os.getenv('MAIL_USERNAME')
+MAIL_P = os.getenv('MAIL_PASSWORD')
+app.config['MAIL_USERNAME'] = MAIL_UN
+app.config['MAIL_PASSWORD'] = MAIL_P
 app.config['MAIL_USE_TLS'] = True
 app.config['MAIL_USE_SSL'] = False
 
-# Initialize Flask-Mail
 mail = Mail(app)
-
-# if os.getenv("TESTING") == True:
-#     app.config["MONGO_CONN"] = mongomock.MongoClient()
-# else:
-#     URI = "mongodb://mongodb:27017/"
-#     app.config["MONGO_CONN"] = MongoClient(URI)
 
 URI = os.getenv('MONGO_URI', 'default-mongodb-uri')
 app.config["MONGO_CONN"] = MongoClient(URI)
@@ -73,6 +70,56 @@ def logout():
     session.pop('logged_in', None)  # Remove 'logged_in' from session
     return redirect(url_for('index'))
 
+def send_password_reset_email(email_to, reset_token):
+    msg = Message("Password Reset Request",
+                  sender="noreply@example.com",  # Sender email
+                  recipients=[email_to])
+    msg.body = f"""To reset your password, visit the following link:
+    {url_for('reset_token', token=reset_token, _external=True)}
+
+    If you did not make this request, simply ignore this email and no changes will be made.
+    """
+    mail.send(msg)
+
+def generate_reset_token(email):
+    serializer = URLSafeTimedSerializer(app.config['SECRET_KEY'])
+    return serializer.dumps(email, salt=app.config['SECURITY_PASSWORD_SALT'])
+
+# For sending the email
+def send_password_reset_email(user_email):
+    token = generate_reset_token(user_email)
+    reset_url = url_for('reset_with_token', token=token, _external=True)
+    # Use your email library to send the email with the reset_url
+
+
+@app.route('/forgot', methods=['GET', 'POST'])
+def forgot_password():
+    # ... existing code to handle the form ...
+    if users:  # If the user exists in your database
+        reset_token = generate_reset_token(users['email'])
+        send_password_reset_email(users['email'], reset_token)
+        flash('An email has been sent with instructions to reset your password.', 'info')
+    return render_template('index.html')
+
+@app.route('/reset/<token>', methods=['GET', 'POST'])
+def reset_token(token):
+    try:
+        serializer = URLSafeTimedSerializer(app.config['SECRET_KEY'])
+        email = serializer.loads(token, salt=app.config['SECURITY_PASSWORD_SALT'], max_age=3600)
+    except SignatureExpired:
+        # The token is expired
+        flash('The password reset link is expired.', 'danger')
+        return redirect(url_for('forgot_password'))
+
+    if request.method == 'POST':
+        password = request.form['password']
+        hashed_password = generate_password_hash(password)
+        # Assuming users is your MongoDB collection for user accounts
+        users.update_one({'email': email}, {'$set': {'password': hashed_password}})
+        flash('Your password has been updated!', 'success')
+        return redirect(url_for('login'))
+    
+    return render_template('reset_password.html', token=token)
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5000, debug=True)

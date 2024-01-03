@@ -107,6 +107,10 @@
 
                 <button type="submit">Login</button>
                 <button type="button" onclick="switchToCreateAccount()">Create Account</button>
+
+                <div style="text-align: center; margin-top: 10px;">
+                    <a href="#" onclick="openPopup();" style="font-size: small;">Forgot Password?</a>
+                </div>
             </form>
             
             <!-- Create Account Form -->
@@ -120,6 +124,18 @@
 
                 <button type="submit">Create Account</button>
                 <button type="button" onclick="switchToLoginForm()">Login</button>
+            </form>
+        </div>
+    </div>
+
+    <div id="forgotPasswordPopup" class="popup" style="display: none;">
+        <div class="popup-content">
+            <span class="close-btn" onclick="closePopup()">&times;</span>
+            <h2>Forgot Password</h2>
+            <form action="{{ url_for('forgot_password') }}" method="post">
+                <label for="forgot-email">Email Address:</label>
+                <input type="email" id="forgot-email" name="email" required>
+                <button type="submit">Submit</button>
             </form>
         </div>
     </div>
