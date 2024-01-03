@@ -92,14 +92,18 @@ def send_password_reset_email(user_email):
     # Use your email library to send the email with the reset_url
 
 
-@app.route('/forgot', methods=['GET', 'POST'])
+@app.route('/forgot', methods=['POST'])
 def forgot_password():
-    # ... existing code to handle the form ...
-    if users:  # If the user exists in your database
-        reset_token = generate_reset_token(users['email'])
-        send_password_reset_email(users['email'], reset_token)
+    email = request.form.get('email')
+    user = users.find_one({'email': email})  # Assuming 'users' is your MongoDB collection
+    if user:
+        reset_token = generate_reset_token(email)
+        send_password_reset_email(email, reset_token)
         flash('An email has been sent with instructions to reset your password.', 'info')
-    return render_template('index.html')
+    else:
+        flash('No account found with that email address.', 'error')
+    # Redirect back to the same page so the user can see the flash message
+    return redirect(url_for('index'))
 
 @app.route('/reset/<token>', methods=['GET', 'POST'])
 def reset_token(token):
