@@ -2,9 +2,9 @@ from flask import Flask, render_template, request, redirect, url_for, flash
 from pymongo import MongoClient
 from werkzeug.security import generate_password_hash, check_password_hash
 from pymongo.errors import PyMongoError
+from flask_mail import Message
 import os
 from flask import session
-import mongomock
 
 app = Flask(__name__)
 app.secret_key = 'your_secret_key' 

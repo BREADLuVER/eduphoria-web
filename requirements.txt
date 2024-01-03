@@ -5,3 +5,4 @@ werkzeug==2.0.1
 dnspython==2.1.0
 python-dotenv == 1.0.0
 mongomock == 4.1.2
+Flask-Mail == 0.9.1
