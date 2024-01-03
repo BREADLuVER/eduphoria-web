@@ -62,6 +62,13 @@
                 </li>
             </ul>
         </div>
+        {% if session.logged_in %}
+            <!-- User Icon -->
+            <a href="#" id="userIcon"><i class="fas fa-user"></i></a>
+        {% else %}
+            <!-- Login Button -->
+            <button id="loginButton" onclick="openPopup();">Login</button>
+        {% endif %}
     </nav>    
     <header class="hero-section py-5">
         <div class="container h-100">
