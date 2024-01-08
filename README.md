@@ -1,5 +1,7 @@
 Remember for each new function create a new branch and never directly commit to main!
 
+Run in vscode terminal using docker-compose up --build
+
 Draft website for testing web functions, still renovating 
 
 HTML file is in templates
