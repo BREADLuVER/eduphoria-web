@@ -36,5 +36,8 @@ jobs:
     - name: Push Docker image
       run: |
         docker-compose build
-        echo "${{ secrets.DOCKERHUB_PASS }}" | docker login -u "${{ secrets.DOCKERHUB_USER }}" --password-stdin
-        docker-compose --verbose push
+        docker-compose up -d
+        docker tag bradyin/edu-web:web breadluvor/eduphoria-web:web-latest
+        docker tag bradyin/edu-web:mongo breadluvor/eduphoria-web:mongo-latest
+        docker push breadluvor/eduphoria-web:web-latest
+        docker push breadluvor/eduphoria-web:mongo-latest
