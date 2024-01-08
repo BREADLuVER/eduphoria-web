@@ -16,7 +16,7 @@ jobs:
       with:
         python-version: "3.11"
         
-    # - name: Test
+    # - name: Tests
     #   run: |
     #     python -m pip install --upgrade pip
     #     pip install pipenv
@@ -35,5 +35,6 @@ jobs:
         images: ${{ secrets.DOCKERHUB_USER }}/edu-web 
     - name: Push Docker image
       run: |
-        docker-compose up --build
+        docker-compose build
+        docker-compose up -d
         docker-compose push
