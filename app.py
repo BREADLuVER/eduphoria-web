@@ -4,44 +4,35 @@ from werkzeug.security import generate_password_hash, check_password_hash
 from itsdangerous import URLSafeTimedSerializer, SignatureExpired
 from pymongo.errors import PyMongoError
 from flask_mail import Message, Mail
+from dotenv import load_dotenv
 import os
 from flask import session
+load_dotenv()
 
 app = Flask(__name__)
 app.secret_key = '246810' 
 app.config['SECURITY_PASSWORD_SALT'] = os.getenv('SECURITY_PASSWORD_SALT')
-
 app.config['MAIL_SERVER'] = 'live.smtp.mailtrap.io'
 app.config['MAIL_PORT'] = 587
-
 MAIL_UN = os.getenv('MAIL_USERNAME')
 MAIL_P = os.getenv('MAIL_PASSWORD')
 app.config['MAIL_USERNAME'] = MAIL_UN
 app.config['MAIL_PASSWORD'] = MAIL_P
 app.config['MAIL_USE_TLS'] = True
 app.config['MAIL_USE_SSL'] = False
-
 mail = Mail(app)
 
-# URI = os.getenv('MONGO_URI')
-
-# app.config["MONGO_CONN"] = MongoClient(URI)
-# connection = app.config["MONGO_CONN"]
-# db = connection["edu_offical_web"]
-# users = db.users
-# user_document = {"username": "exampleUser", "email": "user@example.com"}
-# users.insert_one(user_document)
-
-URI = "mongodb://web_maintain:eduphoria_maintain@dds-bp12b3b9b43b11041975-pub.mongodb.rds.aliyuncs.com:3717/edu_offical_web"
-
-app.config["MONGO_CONN"] = MongoClient(URI)
-connection = app.config["MONGO_CONN"]
-db = connection["edu_offical_web"]
-users = db.users
-
-# Insert a test document into the 'users' collection
-user_document = {"username": "testUser", "email": "test@example.com"}
-users.insert_one(user_document)
+try:
+    URI = os.getenv('MONGO_URI')
+    print("MongoDB URI:", URI)
+    app.config["MONGO_CONN"] = MongoClient(URI)
+    connection = app.config["MONGO_CONN"]
+    db = connection["edu_offical_web"]
+    users = db.users
+    user_document = {"username": "testUser", "email": "test@example.com"}
+    users.insert_one(user_document)
+except Exception as e:
+    print("An error occurred:", e)
 
 @app.route('/', methods=['GET', 'POST'])
 def index():
