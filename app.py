@@ -23,11 +23,25 @@ app.config['MAIL_USE_SSL'] = False
 
 mail = Mail(app)
 
-URI = os.getenv('MONGO_URI', 'default-mongodb-uri')
+# URI = os.getenv('MONGO_URI')
+
+# app.config["MONGO_CONN"] = MongoClient(URI)
+# connection = app.config["MONGO_CONN"]
+# db = connection["edu_offical_web"]
+# users = db.users
+# user_document = {"username": "exampleUser", "email": "user@example.com"}
+# users.insert_one(user_document)
+
+URI = "mongodb://web_maintain:eduphoria_maintain@dds-bp12b3b9b43b11041975-pub.mongodb.rds.aliyuncs.com:3717/edu_offical_web"
+
 app.config["MONGO_CONN"] = MongoClient(URI)
 connection = app.config["MONGO_CONN"]
-db = connection["edu-web"]
+db = connection["edu_offical_web"]
 users = db.users
+
+# Insert a test document into the 'users' collection
+user_document = {"username": "testUser", "email": "test@example.com"}
+users.insert_one(user_document)
 
 @app.route('/', methods=['GET', 'POST'])
 def index():
