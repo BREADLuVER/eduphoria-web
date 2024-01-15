@@ -21,3 +21,13 @@ function changeToUserIcon() {
         document.querySelector('nav').appendChild(userIcon);
     }
 }
+
+document.addEventListener('DOMContentLoaded', function() {
+    var loginButton = document.getElementById("loginButton");
+    if (loginButton) {
+        loginButton.addEventListener('click', function() {
+            document.getElementById("loginPopup").style.display = "block";
+        });
+    }
+});
+

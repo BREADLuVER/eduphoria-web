@@ -12,6 +12,8 @@ services:
       - mongodb
     networks:
       - mongonetwork
+    volumes:
+      - /images
   mongodb:
     image: bradyin/edu-web:mongo
     build:
