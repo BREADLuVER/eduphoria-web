@@ -18,43 +18,45 @@
 
 <body>
     <div class="main-container">
-        <div class="header-navigation">
-            <div class="group">
-                <div class="mask-group"></div>
-                <span class="title">教愉工作室</span>
-            </div>
-            <div class="menu-items">
-                <div class="menu-item">
-                    <span class="product-service">产品服务</span>
+        <div class="hero-frame">
+            <div class="header-navigation">
+                <div class="group">
+                    <div class="mask-group"></div>
+                    <span class="title">教愉工作室</span>
                 </div>
-                <div class="menu-item-1">
-                    <span class="founder-team">创始人团队</span>
-                </div>
-                <div class="menu-item-2"><span class="activity">活动</span></div>
-                <div class="menu-item-3">
-                    <span class="contact-info">联系方式</span>
-                </div>
-                <!-- Login Popup Function -->
-                {% if session.logged_in %}
-                <div class="menu-item-4 dropdown">
-                    <span class="text-6 dropdown-toggle" id="userDropdown" data-toggle="dropdown" aria-haspopup="true"
-                        aria-expanded="false">
-                        <i class="fas fa-user"></i>
-                    </span>
-                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
-                        <a class="dropdown-item" href="#userSettings">User Settings</a>
-                        <a class="dropdown-item" href="{{ url_for('logout') }}">Logout</a>
+                <div class="menu-items">
+                    <div class="menu-item">
+                        <span class="product-service">产品服务</span>
                     </div>
+                    <div class="menu-item-1">
+                        <span class="founder-team">创始人团队</span>
+                    </div>
+                    <div class="menu-item-2"><span class="activity">活动</span></div>
+                    <div class="menu-item-3">
+                        <span class="contact-info">联系方式</span>
+                    </div>
+                    <!-- Login Popup Function -->
+                    {% if session.logged_in %}
+                    <div class="menu-item-4 dropdown">
+                        <span class="text-6 dropdown-toggle" id="userDropdown" data-toggle="dropdown" aria-haspopup="true"
+                            aria-expanded="false">
+                            <i class="fas fa-user"></i>
+                        </span>
+                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
+                            <a class="dropdown-item" href="#userSettings">User Settings</a>
+                            <a class="dropdown-item" href="{{ url_for('logout') }}">Logout</a>
+                        </div>
+                    </div>
+                    {% else %}
+                    <div class="menu-item-4">
+                        <span class="text-6" id="loginButton">登录</span>
+                    </div>
+                    {% endif %}
                 </div>
-                {% else %}
-                <div class="menu-item-4">
-                    <span class="text-6" id="loginButton">登录</span>
-                </div>
-                {% endif %}
             </div>
-        </div>
-        <div class="hero">
-            <span class="title-main">EDUPHORIA</span>
+            <div class="hero">
+                <span class="title-main">EDUPHORIA</span>
+            </div>
         </div>
         <div class="grad"></div>
         <div class="schools-frame">
