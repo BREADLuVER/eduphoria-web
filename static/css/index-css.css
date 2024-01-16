@@ -318,6 +318,18 @@ button:hover {
     -webkit-text-fill-color: transparent;
 }
 
+.hero-frame {
+    display: flex;
+    justify-content: center; /* Center horizontally */
+    align-items: center; /* Center vertically */
+    height: 80%; /* Full viewport height */
+    width: 100vw; /* Full viewport width */
+    position: relative;
+    margin: 226px 0 0 0;
+    box-sizing: border-box;
+    z-index: 25;
+}
+
 .title-main {
     display: flex;
     align-items: center;
@@ -663,7 +675,7 @@ button:hover {
     background: url(/static/images/ec0c40bfc9f2ee1496798ce80922ede2401bb17a.png) no-repeat center;
     background-size: cover;
     transform: translate(-50%, 0);
-    z-index: 24;
+    z-index: 20;
 }
 
 /* Example Media Query for larger screens */
