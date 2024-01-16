@@ -689,11 +689,3 @@ button:hover {
     background-color: #f2dede;
     border-color: #ebccd1;
 }
-
-/* Example Media Query for larger screens */
-@media (min-width: 768px) {
-    .grad {
-        width: 100%; /* Adjust width for larger screens */
-        /* Adjust height as per your design requirements */
-    }
-}
