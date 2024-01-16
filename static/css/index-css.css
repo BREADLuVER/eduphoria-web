@@ -318,7 +318,7 @@ button:hover {
     -webkit-text-fill-color: transparent;
 }
 
-.hero-frame {
+.hero {
     display: flex;
     justify-content: center; /* Center horizontally */
     align-items: center; /* Center vertically */
@@ -348,14 +348,29 @@ button:hover {
     z-index: 25;
 }
 
+.grad {
+    position: absolute;
+    width: auto;
+    height: 25.77%;
+    top: 0;
+    left: 50%;
+    background: url(/static/images/ec0c40bfc9f2ee1496798ce80922ede2401bb17a.png) no-repeat center;
+    background-size: cover;
+    transform: translate(-50%, 0);
+    z-index: 20;
+}
+
 .schools-frame {
     position: relative;
     width: 100vw;
-    height: 288px;
-    margin: 336px 0 0 0;
+    height: 30vw;
+    margin: 400px 0 0 0;
     background: #f7f2ed;
     z-index: 17;
     overflow: hidden;
+    display: flex;
+    justify-content: center; /* Horizontally center */
+    align-items: center;
 }
 
 .school-rect {
@@ -413,10 +428,8 @@ button:hover {
 
 .group-7 {
     position: absolute;
-    width: 49.38%;
-    height: 51.39%;
-    top: 32.99%;
-    left: 25.29%;
+    width: 44.38%;
+    height: 46.39%;
     background: url(/static/images/f37e24fc-6710-401f-be5c-a330da04aee0.png) no-repeat center;
     background-size: 100% 100%;
     z-index: 21;
@@ -664,18 +677,6 @@ button:hover {
     background: #2b2828;
     z-index: 41;
     overflow: show;
-}
-
-.grad {
-    position: absolute;
-    width: auto;
-    height: 25.77%;
-    top: 0;
-    left: 50%;
-    background: url(/static/images/ec0c40bfc9f2ee1496798ce80922ede2401bb17a.png) no-repeat center;
-    background-size: cover;
-    transform: translate(-50%, 0);
-    z-index: 20;
 }
 
 /* Example Media Query for larger screens */
