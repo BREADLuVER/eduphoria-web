@@ -325,7 +325,7 @@ button:hover {
     height: 80%; /* Full viewport height */
     width: 100vw; /* Full viewport width */
     position: relative;
-    margin: 226px 0 0 0;
+    margin: 150px 0 0 0;
     box-sizing: border-box;
     z-index: 25;
 }
@@ -350,7 +350,7 @@ button:hover {
 
 .schools-frame {
     position: relative;
-    width: 1024px;
+    width: 100vw;
     height: 288px;
     margin: 336px 0 0 0;
     background: #f7f2ed;
