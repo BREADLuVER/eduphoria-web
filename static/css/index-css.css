@@ -31,7 +31,7 @@ button {
 .hero-frame {
     position: relative;
     width: 100vw;
-    height: 100vh;
+    height: 90vh;
     background: #f7f2ed;
     z-index: 25;
     overflow: hidden;
@@ -275,7 +275,7 @@ button {
 .grad {
     position: absolute;
     width: 100%; /* Full width */
-    height: 50%; /* Increase the height as needed */
+    height: 100%; /* Increase the height as needed */
     top: 50%; /* Adjust the top position to push it up */
     left: 50%;
     background: url(/static/images/ec0c40bfc9f2ee1496798ce80922ede2401bb17a.png) no-repeat center;
@@ -288,7 +288,6 @@ button {
     position: relative;
     width: 100vw;
     height: 30vw;
-    margin: 400px 0 0 0;
     background: #f7f2ed;
     z-index: 17;
     overflow: hidden;
