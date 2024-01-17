@@ -6,10 +6,10 @@
 }
 
 .main-container {
-    overflow: show;
+    overflow: hidden;
     height: auto;
     position: relative;
-    width: 100vw;
+    width: 100%;
     margin: 0 auto;
     background: #fffaf6;
     justify-content: center;
@@ -30,8 +30,8 @@ button {
 
 .hero-frame {
     position: relative;
-    width: 100vw;
-    height: 90vh;
+    width: 100%;
+    height: 95vh;
     background: #f7f2ed;
     z-index: 25;
     overflow: hidden;
@@ -286,15 +286,27 @@ button {
 
 .schools-frame {
     position: relative;
-    width: 100vw;
-    height: 20vw; /* Adjusted height */
-    background: #f7f2ed;
+    width: 100%; /* Changed from 100vw to 100% */
+    height: 15vw; /* Adjusted height */
     z-index: 17;
-    overflow: hidden;
     display: flex;
     justify-content: center; /* Horizontally center */
     align-items: center; /* Vertically center */
+    box-sizing: border-box; /* Include padding and borders within the width and height */
 }
+
+/* .schools-frame::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: -1;
+    background: linear-gradient(270deg, #d07f66, #f56580);
+    border-radius: inherit;
+    padding: 10px;
+} */
 
 .school-rect {
     position: absolute;
@@ -302,30 +314,31 @@ button {
     height: 100%;
     top: 0;
     left: 0;
-    background: #fffef9;
     z-index: 18;
 }
 
 .hive {
     position: absolute;
     width: 28%;
-    height: 100%;
+    height: auto;
     top: 0;
-    left: -6.09%;
     background: url(/static/images/e4214c8a-4c6a-4c48-8caf-252cf720b681.png) no-repeat center;
     background-size: 100% 100%;
     z-index: 19;
+    
+    filter: grayscale(1);
 }
 
 .hive-6 {
     position: absolute;
     width: 28%;
-    height: 100%;
+    height: auto;
     top: 0;
-    left: 78.2%;
     background: url(/static/images/1f249378-2ad0-43e6-bcbc-e792d1341fb3.png) no-repeat center;
     background-size: 100% 100%;
     z-index: 20;
+
+    filter: grayscale(1);
 }
 
 .text-8 {
@@ -349,12 +362,21 @@ button {
     -webkit-text-fill-color: transparent; /* Webkit specific property for the text color */
 }
 
-/* Adjusted .hive and .hive-6 to maintain aspect ratio */
+
+.group-7 {
+    position: absolute;
+    width: 43%;
+    height: 55%;
+    background: url(/static/images/f37e24fc-6710-401f-be5c-a330da04aee0.png) no-repeat center;
+    background-size: 100% 100%;
+    z-index: 21;
+}
+
 .hive,
 .hive-6 {
     position: absolute;
-    width: 27.81%; /* Set width as a percentage of the parent */
-    padding-top: 15.74%; /* Padding-top for aspect ratio; adjust based on actual ratio */
+    width: 20%; /* Decrease width */
+    height: 15vw; /* Decrease height */
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
@@ -362,30 +384,22 @@ button {
     background-position: center center;
     background-size: cover; /* Cover ensures the image fills the entire space */
     z-index: 19;
-}
-
-.group-7 {
-    position: absolute;
-    width: 44.38%;
-    height: 46.39%;
-    background: url(/static/images/f37e24fc-6710-401f-be5c-a330da04aee0.png) no-repeat center;
-    background-size: 100% 100%;
-    z-index: 21;
+    filter: grayscale(1);
 }
 
 /* Adjusted left positions to align the images */
 .hive {
-    left: calc(8%); /* Adjust based on actual position */
+    left: calc(50% - 42%); /* Adjust based on actual position */
 }
 
 .hive-6 {
-    left: calc(92%); /* Adjust based on actual position */
+    left: calc(50% + 42%); /* Adjust based on actual position */
 }
 
 /* .group-7 adjusted to maintain aspect ratio */
 .group-7 {
     position: absolute;
-    top: 50%; /* Position it 50% from the top of .schools-frame */
+    top: 55%; /* Position it 50% from the top of .schools-frame */
     left: 50%; /* Position it 50% from the left of .schools-frame */
     transform: translate(-50%, -50%); /* Center the element */
     background: url(/static/images/f37e24fc-6710-401f-be5c-a330da04aee0.png) no-repeat center;
@@ -741,8 +755,8 @@ button:hover {
 }
 
 /* You can add more media queries for other breakpoints */
-@media (max-width: 480px) {
+@media (max-width: 1px) {
     .text-8 {
-        font-size: 8px; /* Even smaller font size for very small screens */
+        font-size: 4px; /* Even smaller font size for very small screens */
     }
 }
