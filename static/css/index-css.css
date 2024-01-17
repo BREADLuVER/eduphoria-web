@@ -223,14 +223,11 @@ button {
 }
 
 .title {
-    display: flex;
-    align-items: flex-start;
-    justify-content: flex-start;
     position: absolute;
     height: 42px;
     top: 6.75px;
     left: 62px;
-    font-family: Roboto Condensed, var(--default-font-family);
+    font-family: 'Roboto Condensed', var(--default-font-family);
     font-size: 38px;
     font-weight: 700;
     line-height: 41.8px;
@@ -238,9 +235,12 @@ button {
     white-space: nowrap;
     background: linear-gradient(90deg, #fdba66, #fd6d71);
     z-index: 28;
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
+    color: transparent; /* Standard property for the text color */
+    background-clip: text; /* Standard property for the background clip */
+    -webkit-background-clip: text; /* Webkit specific property for the background clip */
+    -webkit-text-fill-color: transparent; /* Webkit specific property for the text color */
 }
+
 
 .hero {
     display: flex;
@@ -287,19 +287,19 @@ button {
 .schools-frame {
     position: relative;
     width: 100vw;
-    height: 30vw;
+    height: 20vw; /* Adjusted height */
     background: #f7f2ed;
     z-index: 17;
     overflow: hidden;
     display: flex;
     justify-content: center; /* Horizontally center */
-    align-items: center;
+    align-items: center; /* Vertically center */
 }
 
 .school-rect {
     position: absolute;
     width: 100%;
-    height: 100.28%;
+    height: 100%;
     top: 0;
     left: 0;
     background: #fffef9;
@@ -308,8 +308,8 @@ button {
 
 .hive {
     position: absolute;
-    width: 27.81%;
-    height: 100.28%;
+    width: 28%;
+    height: 100%;
     top: 0;
     left: -6.09%;
     background: url(/static/images/e4214c8a-4c6a-4c48-8caf-252cf720b681.png) no-repeat center;
@@ -319,8 +319,8 @@ button {
 
 .hive-6 {
     position: absolute;
-    width: 28.13%;
-    height: 100.28%;
+    width: 28%;
+    height: 100%;
     top: 0;
     left: 78.2%;
     background: url(/static/images/1f249378-2ad0-43e6-bcbc-e792d1341fb3.png) no-repeat center;
@@ -345,8 +345,25 @@ button {
     white-space: nowrap;
     background: linear-gradient(270deg, #d07f66, #f56580);
     z-index: 22;
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
+    color: transparent; /* Standard property for the text color */
+    background-clip: text; /* Standard property for the background clip */
+    -webkit-background-clip: text; /* Webkit specific property for the background clip */
+    -webkit-text-fill-color: transparent; /* Webkit specific property for the text color */
+}
+
+/* Adjusted .hive and .hive-6 to maintain aspect ratio */
+.hive,
+.hive-6 {
+    position: absolute;
+    width: 27.81%; /* Set width as a percentage of the parent */
+    padding-top: 15.74%; /* Padding-top for aspect ratio; adjust based on actual ratio */
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover; /* Cover ensures the image fills the entire space */
+    z-index: 19;
 }
 
 .group-7 {
@@ -357,6 +374,31 @@ button {
     background-size: 100% 100%;
     z-index: 21;
 }
+
+/* Adjusted left positions to align the images */
+.hive {
+    left: calc(50% - 13.905%); /* Adjust based on actual position */
+}
+
+.hive-6 {
+    left: calc(50% + 13.905%); /* Adjust based on actual position */
+}
+
+/* .group-7 adjusted to maintain aspect ratio */
+.group-7 {
+    position: absolute;
+    top: 50%; /* Position it 50% from the top of .schools-frame */
+    left: 50%; /* Position it 50% from the left of .schools-frame */
+    transform: translate(-50%, -50%); /* Center the element */
+    height: 20px; /* Fixed height */
+    /* Set the width based on the image's aspect ratio to maintain it */
+    /* This example assumes an aspect ratio of 4:3 for the .group-7 image */
+    width: calc(20px * 4 / 3); /* Calculate the width to maintain the aspect ratio */
+    background: url(/static/images/f37e24fc-6710-401f-be5c-a330da04aee0.png) no-repeat center;
+    background-size: contain; /* This will ensure the image fits within the element without distortion */
+    z-index: 21;
+}
+
 
 .flex-row-f {
     position: relative;
