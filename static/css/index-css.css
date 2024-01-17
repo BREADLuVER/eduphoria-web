@@ -333,12 +333,10 @@ button {
     align-items: flex-start;
     justify-content: center;
     position: absolute;
-    width: 442px;
-    height: 8.06%;
-    top: 18.06%;
-    left: calc(50% - 221px);
+    width: auto;
+    height: auto;
+    top: 14.06%;
     font-family: Roboto Flex, var(--default-font-family);
-    font-size: 22px;
     font-weight: 800;
     line-height: 23.2px;
     text-align: center;
@@ -377,11 +375,11 @@ button {
 
 /* Adjusted left positions to align the images */
 .hive {
-    left: calc(50% - 13.905%); /* Adjust based on actual position */
+    left: calc(8%); /* Adjust based on actual position */
 }
 
 .hive-6 {
-    left: calc(50% + 13.905%); /* Adjust based on actual position */
+    left: calc(92%); /* Adjust based on actual position */
 }
 
 /* .group-7 adjusted to maintain aspect ratio */
@@ -390,10 +388,6 @@ button {
     top: 50%; /* Position it 50% from the top of .schools-frame */
     left: 50%; /* Position it 50% from the left of .schools-frame */
     transform: translate(-50%, -50%); /* Center the element */
-    height: 20px; /* Fixed height */
-    /* Set the width based on the image's aspect ratio to maintain it */
-    /* This example assumes an aspect ratio of 4:3 for the .group-7 image */
-    width: calc(20px * 4 / 3); /* Calculate the width to maintain the aspect ratio */
     background: url(/static/images/f37e24fc-6710-401f-be5c-a330da04aee0.png) no-repeat center;
     background-size: contain; /* This will ensure the image fits within the element without distortion */
     z-index: 21;
@@ -730,4 +724,25 @@ button:hover {
     color: #a94442;
     background-color: #f2dede;
     border-color: #ebccd1;
+}
+
+@media (max-width: 1400px) {
+    .text-8 {
+        font-size: 18px; /* Smaller font size */
+        width: auto; /* Width can be auto to adjust to content */
+    }
+}
+
+@media (max-width: 1024px) {
+    .text-8 {
+        font-size: 16px; /* Smaller font size */
+        width: auto; /* Width can be auto to adjust to content */
+    }
+}
+
+/* You can add more media queries for other breakpoints */
+@media (max-width: 480px) {
+    .text-8 {
+        font-size: 8px; /* Even smaller font size for very small screens */
+    }
 }
