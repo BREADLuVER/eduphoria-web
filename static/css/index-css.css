@@ -380,46 +380,39 @@ button {
 
 .flex-row-f {
     position: relative;
-    width: 1156.092px;
+    width: auto;
     height: 1387.57px;
     margin: -1px 0 0 0;
     z-index: 16;
 }
 
 .motto-frame {
-    position: relative;
+    display: flex;
     width: 100%;
-    max-width: 1024px;
-    margin: auto;
     background: #f7f2ed;
+    align-items: flex-start;
 }
 
 .flex-column-bff {
-    position: absolute;
+    flex: 0 0 auto;
     width: 37.5%;
-    height: 87.37%;
-    top: 0;
-    left: 6.25%;
-    z-index: 8;
+}
+
+.hands, .coffee {
+    height: 338.88px;
+    flex: 1; /* Each take up half the space of their container */
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
 }
 
 .hands {
-    position: relative;
-    width: 384px;
-    height: 336px;
-    margin: 0 0 0 0;
-    background: url(/static/images/dfd5df2df252cf2171c93b677fe5269bac07dc4a.png) no-repeat center;
-    background-size: cover;
+    background-image: url('/static/images/dfd5df2df252cf2171c93b677fe5269bac07dc4a.png');
     z-index: 8;
 }
 
 .coffee {
-    position: relative;
-    width: 384px;
-    height: 338.88px;
-    margin: -2.133px 0 0 0;
-    background: url(/static/images/e727fd92d035b5ea10589b2690b7aaedd79668f6.png) no-repeat center;
-    background-size: cover;
+    background-image: url('/static/images/e727fd92d035b5ea10589b2690b7aaedd79668f6.png');
     z-index: 7;
 }
 
