@@ -391,6 +391,7 @@ button {
     width: 100%;
     background: #f7f2ed;
     align-items: flex-start;
+    padding-left: 6.25%
 }
 
 .flex-column-bff {
