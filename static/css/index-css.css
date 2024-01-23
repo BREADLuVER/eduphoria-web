@@ -317,30 +317,6 @@ button {
     z-index: 18;
 }
 
-.hive {
-    position: absolute;
-    width: 28%;
-    height: auto;
-    top: 0;
-    background: url(/static/images/e4214c8a-4c6a-4c48-8caf-252cf720b681.png) no-repeat center;
-    background-size: 100% 100%;
-    z-index: 19;
-    
-    filter: grayscale(1);
-}
-
-.hive-6 {
-    position: absolute;
-    width: 28%;
-    height: auto;
-    top: 0;
-    background: url(/static/images/1f249378-2ad0-43e6-bcbc-e792d1341fb3.png) no-repeat center;
-    background-size: 100% 100%;
-    z-index: 20;
-
-    filter: grayscale(1);
-}
-
 .school-title {
     display: flex;
     align-items: flex-start;
@@ -365,7 +341,7 @@ button {
 
 .school-group {
     position: absolute;
-    top: 55%;
+    top: 58%;
     left: 50%;
     transform: translate(-50%, -50%);
     width: 55%; /* Width of the container */
@@ -375,30 +351,32 @@ button {
     z-index: 21;
 }
 
-
 .hive,
 .hive-6 {
     position: absolute;
-    width: 20%; /* Decrease width */
-    height: 15vw; /* Decrease height */
     top: 50%;
-    left: 50%;
+    width: 28%;
+    height: 10vw;
     transform: translate(-50%, -50%);
     background-repeat: no-repeat;
     background-position: center center;
-    background-size: cover; /* Cover ensures the image fills the entire space */
-    z-index: 19;
+    background-size: cover;
     filter: grayscale(1);
+    z-index: 19;
 }
 
-/* Adjusted left positions to align the images */
+/* Specific styles for .hive */
 .hive {
-    left: calc(50% - 42%); /* Adjust based on actual position */
+    left: calc(50% - 42%);
+    background: url(/static/images/e4214c8a-4c6a-4c48-8caf-252cf720b681.png) no-repeat center;
 }
 
+/* Specific styles for .hive-6 */
 .hive-6 {
-    left: calc(50% + 42%); /* Adjust based on actual position */
+    left: calc(50% + 42%);
+    background: url(/static/images/1f249378-2ad0-43e6-bcbc-e792d1341fb3.png) no-repeat center;
 }
+
 
 .flex-row-f {
     position: relative;
@@ -733,14 +711,14 @@ button:hover {
 }
 
 @media (max-width: 1400px) {
-    .text-8 {
+    .school-title {
         font-size: 18px; /* Smaller font size */
         width: auto; /* Width can be auto to adjust to content */
     }
 }
 
 @media (max-width: 1024px) {
-    .text-8 {
+    .school-title {
         font-size: 16px; /* Smaller font size */
         width: auto; /* Width can be auto to adjust to content */
     }
@@ -748,7 +726,7 @@ button:hover {
 
 /* You can add more media queries for other breakpoints */
 @media (max-width: 1px) {
-    .text-8 {
+    .school-title {
         font-size: 4px; /* Even smaller font size for very small screens */
     }
 }
