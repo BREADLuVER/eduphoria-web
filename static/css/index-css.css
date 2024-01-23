@@ -387,11 +387,10 @@ button {
 }
 
 .motto-frame {
-    position: absolute;
-    width: 1024px;
-    height: 770px;
-    top: 0;
-    left: 0;
+    position: relative;
+    width: 100%;
+    max-width: 1024px;
+    margin: auto;
     background: #f7f2ed;
 }
 
