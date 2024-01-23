@@ -341,14 +341,14 @@ button {
     filter: grayscale(1);
 }
 
-.text-8 {
+.school-title {
     display: flex;
     align-items: flex-start;
     justify-content: center;
     position: absolute;
     width: auto;
     height: auto;
-    top: 14.06%;
+    top: 12%;
     font-family: Roboto Flex, var(--default-font-family);
     font-weight: 800;
     line-height: 23.2px;
@@ -363,14 +363,18 @@ button {
 }
 
 
-.group-7 {
+.school-group {
     position: absolute;
-    width: 43%;
-    height: 55%;
+    top: 55%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 55%; /* Width of the container */
+    height: 55%; /* Height of the container */
     background: url(/static/images/f37e24fc-6710-401f-be5c-a330da04aee0.png) no-repeat center;
-    background-size: 100% 100%;
+    background-size: 60% auto; /* Adjusts the image to fit within the container without distortion */
     z-index: 21;
 }
+
 
 .hive,
 .hive-6 {
@@ -395,18 +399,6 @@ button {
 .hive-6 {
     left: calc(50% + 42%); /* Adjust based on actual position */
 }
-
-/* .group-7 adjusted to maintain aspect ratio */
-.group-7 {
-    position: absolute;
-    top: 55%; /* Position it 50% from the top of .schools-frame */
-    left: 50%; /* Position it 50% from the left of .schools-frame */
-    transform: translate(-50%, -50%); /* Center the element */
-    background: url(/static/images/f37e24fc-6710-401f-be5c-a330da04aee0.png) no-repeat center;
-    background-size: contain; /* This will ensure the image fits within the element without distortion */
-    z-index: 21;
-}
-
 
 .flex-row-f {
     position: relative;
