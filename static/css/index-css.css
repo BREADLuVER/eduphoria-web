@@ -387,11 +387,13 @@ button {
 }
 
 .motto-frame {
-    display: flex; /* Use flexbox to layout children */
-    flex-direction: row; /* Arrange children in a row */
-    width: 100%; /* Full width of the parent container */
-    height: 100vh; /* Full height of the viewport */
+    display: flex;
+    flex-direction: column; /* or row, depending on your layout */
+    width: 100%;
+    height: 100vh;
     background: #f7f2ed;
+    position: relative; /* Establish new positioning context */
+    padding-left: 6.25%;
 }
 
 .flex-column-bff {
@@ -418,6 +420,7 @@ button {
 }
 
 .flex-column-ad {
+    flex: 1; /* Take up the other half of the space in the flex container */
     display: flex;
     flex-direction: column;
     align-items: center;
