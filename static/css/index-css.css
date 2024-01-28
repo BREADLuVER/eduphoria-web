@@ -381,18 +381,17 @@ button {
 .flex-row-f {
     position: relative;
     width: auto;
-    height: 1387.57px;
+    height: auto;
     margin: -1px 0 0 0;
     z-index: 16;
 }
 
 .motto-frame {
-    display: flex;
-    width: 100%;
-    height:100%;
+    display: flex; /* Use flexbox to layout children */
+    flex-direction: row; /* Arrange children in a row */
+    width: 100%; /* Full width of the parent container */
+    height: 100vh; /* Full height of the viewport */
     background: #f7f2ed;
-    align-items: flex-start;
-    padding-left: 6.25%
 }
 
 .flex-column-bff {
@@ -510,6 +509,16 @@ button {
     white-space: nowrap;
     z-index: 5;
     text-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+.advantage-frame {
+    display: flex;
+    flex-direction: column; /* Adjust if you want vertical layout */
+    width: 100%; /* Full width of the parent container */
+    height: 100vh; /* Full height of the viewport */
+    background: #f7f2ed;
+    align-items: flex-start;
+    padding-left: 6.25%;
 }
 
 .hive-8 {
