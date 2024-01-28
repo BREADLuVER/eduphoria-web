@@ -472,6 +472,23 @@ button {
     z-index: 3;
 }
 
+.text-a {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    position: relative;
+    width: 392px;
+    height: 83px;
+    margin: 112.904px 0 0 100px;
+    color: #4c4c4c;
+    font-family: Inter, var(--default-font-family);
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 20.8px;
+    text-align: left;
+    z-index: 6;
+}
+
 .text-c {
     display: flex;
     align-items: flex-start;
