@@ -438,20 +438,17 @@ button {
 }
 
 .our-motto {
-    display: flex;
-    align-items: flex-start;
-    justify-content: center;
     position: absolute;
     width: 320px;
-    height: 11.17%;
+    height: 60.511px; /* Set a specific height */
     top: 0;
-    left: calc(50% - 155px);
+    left: 50%;
+    transform: translateX(-50%);
     font-family: Inter, var(--default-font-family);
     font-size: 50px;
     font-weight: 700;
     line-height: 60.511px;
     text-align: center;
-    white-space: nowrap;
     background: linear-gradient(90deg, #fbad67, #f2c94c);
     opacity: 0.5;
     z-index: 4;
@@ -461,6 +458,7 @@ button {
 
 .motto-sub {
     position: absolute;
+    top: calc(60.511px + 10px); /* Height of our-motto plus desired space */
     left: 50%;
     transform: translateX(-50%);
     color: #7d7b7b;
