@@ -419,14 +419,19 @@ button {
 }
 
 .flex-column-ad {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
     position: absolute;
-    top: 138.359px;
+    top: 0; /* Start at the top of the viewport */
     right: 0;
-    bottom: 0;
-    left: 448px;
+    bottom: 0; /* Extend to the bottom of the viewport */
+    left: 50%; /* Start at the middle of the screen */
+    width: 50%; /* Take up half of the screen width */
+    height: 100vh; /* Full viewport height */
     z-index: 6;
 }
-
 
 .rectangle {
     position: relative;
