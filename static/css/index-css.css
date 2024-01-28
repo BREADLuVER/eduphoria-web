@@ -459,7 +459,7 @@ button {
     -webkit-text-fill-color: transparent;
 }
 
-.text-9 {
+.motto-sub {
     position: absolute;
     left: 50%;
     transform: translateX(-50%);
@@ -472,7 +472,7 @@ button {
     z-index: 3;
 }
 
-.text-a {
+.motto-text {
     display: flex;
     align-items: center;
     justify-content: flex-start;
