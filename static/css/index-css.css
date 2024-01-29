@@ -428,12 +428,12 @@ button {
     align-items: center;
     justify-content: center;
     position: absolute;
-    top: 30vh; /* Start at the top of the viewport */
+    top: 0; /* Start at the top of the viewport */
     right: 0;
     bottom: 0; /* Extend to the bottom of the viewport */
     left: 41.4%; /* Start at the middle of the screen */
     width: 62.5%; /* Take up half of the screen width */
-    height: 70vh; /* Full viewport height */
+    height: 100vh; /* Full viewport height */
     z-index: 6;
 }
 
@@ -451,7 +451,7 @@ button {
     position: absolute;
     width: 320px;
     height: 60.511px; /* Set a specific height */
-    top: 0;
+    top: 25vh; /* Adjusted to be above the middle of the screen */
     left: 50%;
     transform: translateX(-50%);
     font-family: Inter, var(--default-font-family);
@@ -466,9 +466,27 @@ button {
     -webkit-text-fill-color: transparent;
 }
 
+.text-c {
+    position: absolute;
+    width: 160px;
+    height: 7.14%;
+    top: 25vh - 38.727px; /* Adjusted to sit above our-motto */
+    left: 50%;
+    transform: translateX(-50%) translateY(-100%); /* Adjust vertically above our-motto */
+    color: #646464;
+    font-family: Inter, var(--default-font-family);
+    font-size: 32px;
+    font-weight: 800;
+    line-height: 38.727px;
+    text-align: center;
+    white-space: nowrap;
+    z-index: 5;
+    text-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+}
+
 .motto-sub {
     position: absolute;
-    top: calc(60.511px + 10px); /* Height of our-motto plus desired space */
+    top: calc(25vh + 60.511px + 10px); /* Adjusted to sit below our-motto */
     left: 50%;
     transform: translateX(-50%);
     color: #7d7b7b;
@@ -480,32 +498,13 @@ button {
     z-index: 3;
 }
 
-.motto-text {
-    display: flex;
-    align-items: center; /* Vertically center the content */
-    justify-content: center; /* Horizontally center the content */
-    position: relative;
-    width: 392px;
-    height: 83px;
-    margin: auto; /* Center the element */
-    color: #4c4c4c;
-    font-family: Inter, var(--default-font-family);
-    font-size: 16px;
-    font-weight: 400;
-    line-height: 20.8px;
-    text-align: center; /* Align the text center */
-    z-index: 6;
-}
 
 .text-c {
-    display: flex;
-    align-items: flex-start;
-    justify-content: center;
     position: absolute;
     width: 160px;
-    height: 7.14%;
-    top: 2.06%;
-    left: calc(50% - 76px);
+    top: calc(25vh); /* Half the line-height to overlap on our-motto */
+    left: 50%;
+    transform: translateX(-50%);
     color: #646464;
     font-family: Inter, var(--default-font-family);
     font-size: 32px;
@@ -513,9 +512,11 @@ button {
     line-height: 38.727px;
     text-align: center;
     white-space: nowrap;
-    z-index: 5;
+    z-index: 5; /* Ensure it's above our-motto */
     text-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
 }
+
+
 
 .advantage-frame {
     display: flex;
