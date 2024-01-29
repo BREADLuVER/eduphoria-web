@@ -441,7 +441,7 @@ button {
     position: absolute;
     bottom: 0;
     right: 0;
-    width: 58vw; /* 60% of the viewport width */
+    width: 100%; /* 60% of the viewport width */
     height: 10vh; /* 10% of the viewport height */
     background: #a9a2a2;
     z-index: 1;
