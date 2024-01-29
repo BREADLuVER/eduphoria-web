@@ -397,13 +397,15 @@ button {
 }
 
 .flex-column-bff {
-    flex: 0 0 auto;
     width: 37.5%;
+    height: 90vh; /* The container takes up 90% of the viewport height */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around; /* This will provide space between the images */
 }
 
 .hands, .coffee {
-    height: 338.88px;
-    flex: 1; /* Each take up half the space of their container */
+    height: 45vh; /* Each takes up 45% of the viewport height */
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
@@ -436,10 +438,11 @@ button {
 }
 
 .rectangle {
-    position: relative;
-    width: 576px;
-    height: 97.253px;
-    margin: 245.747px 0 0 0;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 54vw; /* 60% of the viewport width */
+    height: 10vh; /* 10% of the viewport height */
     background: #a9a2a2;
     z-index: 1;
 }
