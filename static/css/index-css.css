@@ -517,43 +517,43 @@ button {
     z-index: 6;
 }
 
+
 .advantage-frame {
     display: flex;
     flex-direction: column;
     width: 100%;
     height: 100vh;
     background: #f7f2ed;
-    align-items: flex-start; /* This will align the title group to the left */
-    justify-content: center; /* This will center the title group vertically */
-    padding-left: 6.25%;
+    align-items: center; /* Center children horizontally */
+    justify-content: center; /* Center children vertically */
+    position: relative; /* Needed for absolute positioning of children */
 }
 
 
 .hive-8 {
-    position: absolute;
+    position: absolute; /* Keep it within the layout flow */
+    top: calc(40% - 10px); /* Adjust the 50% if needed to align with the motto frame */
+    right: -10%; /* Extend 10px over the right edge of its container */
     width: 521.092px;
     height: 702.57px;
-    top: 50%;
-    left: 50%;
-    background: url(/static/images/05d76816-5c30-4b66-886e-5a8b371c53c2.png) no-repeat center;
-    background-size: cover;
-    transform: translate(10.93%, -1.25%);
+    background: url('/static/images/05d76816-5c30-4b66-886e-5a8b371c53c2.png') no-repeat center;
+    background-size: contain;
+    transform: translateY(-50%);
     z-index: 16;
 }
 
+
 .advantage-title-group {
-    align-self: center;
-    top: 32vh; /* Adjust this value based on where you want the group */
-    left: 50%;
-    transform: translateX(-50%);
+    position: absolute;
+    top: 20vh; /* Adjust based on your preference */
     display: flex;
     flex-direction: column;
     align-items: center;
     z-index: 5;
 }
 
-.our-advantages {
-    width: 320px;
+
+.advantages {
     font-family: Inter, var(--default-font-family);
     font-size: 50px;
     font-weight: 700;
@@ -561,34 +561,34 @@ button {
     text-align: center;
     background: linear-gradient(90deg, #fbad67, #f2c94c);
     opacity: 0.5;
-    z-index: 5;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
+    position: relative; /* Ensure stacking context */
+    z-index: 2; /* Above our-advantage */
 }
 
 
-.advantage {
-    width: 160px;
-    color: #646464;
+.our-advantage {
     font-family: Inter, var(--default-font-family);
     font-size: 32px;
     font-weight: 800;
     line-height: 38.727px;
     text-align: center;
-    white-space: nowrap;
+    color: #646464;
     text-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
-    margin-bottom: -50px; /* Overlap with our-motto */
-    z-index: 6;
+    margin-top: -50px; /* Overlap with advantages */
+    z-index: 3; /* Below advantages */
 }
 
+
 .advantage-sub {
-    color: #7d7b7b;
     font-family: Inter, var(--default-font-family);
     font-size: 15px;
     font-weight: 400;
     line-height: 18.153px;
     text-align: center;
-    z-index: 4;
+    color: #7d7b7b;
+    margin-top: 20px; /* Space below our-advantage */
 }
 
 
